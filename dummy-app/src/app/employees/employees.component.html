@@ -1,0 +1,21 @@
+<h3>Welcome to the employees database</h3>
+<button (click)="listAll()">List All Employees</button>
+<div class="row" *ngFor ="let emp of employees">
+    <div class="col-2">{{emp.id}} <button (click)="delete(emp.id)">x</button> <button>edit</button></div>
+    <div class="col-2">{{emp.employee_name}}</div>
+    <div class="col-2">{{emp.employee_salary}}</div>
+    <div class="col-2">{{emp.employee_age}}</div>
+    <div class="col-2">{{emp.profile_image}}</div>
+<br>
+
+</div>
+<div>
+<input (keydown.enter)="getById($event.target.value)">Get Employee By Id</input>
+<div class="col-2">{{employee.id}} <button (click)="delete(employee.id)">x</button> <button>edit</button></div>
+    <div class="col-2">{{employee.employee_name}}</div>
+    <div class="col-2">{{employee.employee_salary}}</div>
+    <div class="col-2">{{employee.employee_age}}</div>
+    <div class="col-2">{{employee.profile_image}}</div>
+</div>
+
+
