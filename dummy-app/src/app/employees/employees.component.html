@@ -1,21 +1,77 @@
 <h3>Welcome to the employees database</h3>
 <button (click)="listAll()">List All Employees</button>
-<div class="row" *ngFor ="let emp of employees">
-    <div class="col-2">{{emp.id}} <button (click)="delete(emp.id)">x</button> <button>edit</button></div>
+<div class="row" *ngFor="let emp of employees">
+    <div class="col-2">{{emp.id}} <button (click)="delete(emp.id)">x</button> <button (click)="editEmploy(emp.id)">edit</button>
+        <div *ngIf="editEmp">
+            <form [formGroup]="editForm">
+
+
+                <input class="input-box form-control" type="text" placeholder="name" formControlName="name">
+        
+        
+                <input class="input-box form-control" type="number" placeholder="salary" formControlName="salary">
+        
+        
+                <input class="input-box form-control" type="number" placeholder="age" formControlName="age">
+        
+        
+                <button class="form-control btn submit-btn" (click)="edit()">Edit Employee Record</button>
+        
+            </form>
+        </div>
+    </div>
     <div class="col-2">{{emp.employee_name}}</div>
     <div class="col-2">{{emp.employee_salary}}</div>
     <div class="col-2">{{emp.employee_age}}</div>
     <div class="col-2">{{emp.profile_image}}</div>
-<br>
+    <br>
 
 </div>
-<div>
-<input (keydown.enter)="getById($event.target.value)">Get Employee By Id</input>
-<div class="col-2">{{employee.id}} <button (click)="delete(employee.id)">x</button> <button>edit</button></div>
+<input style="margin-left: 5%" (keydown.enter)="getById($event.target.value)" placeholder="Search employee by id" />
+<div *ngIf="empById">
+    <div class="col-2">{{employee.id}}
+        <button (click)="delete(employee.id)">x</button> 
+        <button (click)="editEmploy(employee.id)">edit</button>
+        <div *ngIf="editEmp">
+            <form [formGroup]="editForm">
+
+
+                <input class="input-box form-control" type="text" placeholder="name" formControlName="name">
+        
+        
+                <input class="input-box form-control" type="number" placeholder="salary" formControlName="salary">
+        
+        
+                <input class="input-box form-control" type="number" placeholder="age" formControlName="age">
+        
+        
+                <button class="form-control btn submit-btn" (click)="edit()">Edit Employee Record</button>
+        
+            </form>
+        </div>
+        </div>
     <div class="col-2">{{employee.employee_name}}</div>
     <div class="col-2">{{employee.employee_salary}}</div>
     <div class="col-2">{{employee.employee_age}}</div>
     <div class="col-2">{{employee.profile_image}}</div>
 </div>
 
+<button style="margin-left: 5%" (click)="addEmp()">Add new Employee</button>
+<div *ngIf="add">
+    <form [formGroup]="addForm">
 
+
+        <input class="input-box form-control" type="text" placeholder="name" formControlName="name">
+
+
+        <input class="input-box form-control" type="number" placeholder="salary" formControlName="salary">
+
+
+        <input class="input-box form-control" type="number" placeholder="age" formControlName="age">
+
+
+        <button class="form-control btn submit-btn" (click)="create()">Create Employee Record</button>
+
+    </form>
+
+</div>

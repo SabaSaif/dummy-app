@@ -22,6 +22,28 @@ export class EmployeeService {
 
         return this.httpClient.get(`${environment.service_url}/api/v1/employee/${id}`, { headers:headers });
     } 
+    edit(id, name, salary, age){
+        let headers = new HttpHeaders();
+        headers = headers.set('Content-Type', 'application/json');
+        let data = {
+            name,
+            salary,
+            age
+        }
+
+        return this.httpClient.put(`${environment.service_url}/api/v1/update/${id}`, data, { headers:headers });
+    }
+    create(name, salary, age){
+        let headers = new HttpHeaders();
+        headers = headers.set('Content-Type', 'application/json');
+        let data = {
+            name,
+            salary,
+            age
+        }
+
+        return this.httpClient.post(`${environment.service_url}/api/v1/create`, data, { headers:headers });
+    }
 
     delete(id){
         let headers = new HttpHeaders();
